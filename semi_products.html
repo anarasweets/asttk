@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Полуфабрикаты</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Подключаем библиотеку select2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Управление полуфабрикатами</h1>
+      <!-- Навигационное меню -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="raw_materials.html">Сырьё</a></li>
+          <li><a href="semi_products.html">Полуфабрикаты</a></li>
+          <li><a href="finished_products.html">Готовая продукция</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Кнопка для открытия модального окна -->
+      <button id="open-modal" class="btn">Добавить полуфабрикат</button>
+
+      <!-- Секция со списком полуфабрикатов -->
+      <section class="card">
+        <h2>Список полуфабрикатов</h2>
+        <div class="table-container">
+          <table id="semi-products-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="select-all"></th>
+                <th>Название</th>
+                <th>Ингредиенты</th>
+                <th>Единица измерения</th>
+                <th>Себестоимость за порцию</th>
+                <th>Себестоимость за единицу</th>
+                <th>Выход</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <!-- Кнопки для удаления и экспорта выбранных -->
+        <button id="delete-selected" class="btn">Удалить выбранные</button>
+        <button id="export-selected" class="btn">Экспорт выбранных</button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Модальное окно для добавления/редактирования полуфабриката -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Добавить полуфабрикат</h2>
+      <form id="add-semi-product-form" class="form">
+        <!-- Поле для названия полуфабриката -->
+        <input type="text" id="semi-product-name" placeholder="Название" required>
+        
+        <!-- Список ингредиентов -->
+        <div id="ingredients-list"></div>
+        
+        <!-- Поля для добавления ингредиента -->
+        <div class="form-row">
+          <select id="raw-material-select" class="form-select">
+            <option value="" disabled selected>Выберите сырьё</option>
+          </select>
+          <input type="number" id="ingredient-quantity" placeholder="Количество" step="0.01" class="form-input">
+          <button type="button" id="add-ingredient" class="btn">Добавить ингредиент</button>
+        </div>
+        
+        <!-- Поле для выхода продукции -->
+        <div class="form-row">
+          <input type="number" id="semi-product-output" placeholder="Выход продукции" step="0.01" required>
+          <select id="output-unit" class="form-select">
+            <option value="кг">кг</option>
+            <option value="шт">шт</option>
+            <option value="л">л</option>
+          </select>
+        </div>
+        
+        <!-- Кнопка для сохранения -->
+        <button type="submit" class="btn">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Подключаем jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Подключаем библиотеку select2 -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- Подключаем библиотеку ExcelJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.3.0/exceljs.min.js"></script>
+  <!-- Подключаем основной скрипт -->
+  <script src="scripts/script_semi_products.js"></script>
+</body>
+</html>
